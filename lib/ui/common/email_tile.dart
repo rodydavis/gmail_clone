@@ -41,6 +41,7 @@ class EmailListTile extends StatelessWidget {
                   ),
                   Text(
                     item?.description ?? "",
+                    maxLines: 3,
                     style: Theme.of(context).textTheme.body1.copyWith(
                           fontSize: 16.0,
                           color: Colors.grey,

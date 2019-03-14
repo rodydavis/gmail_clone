@@ -1,9 +1,11 @@
 import 'package:floating_search_bar/floating_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gmail_clone/data/classes/email.dart';
-import 'package:gmail_clone/data/dummy_data.dart';
+import 'package:gmail_clone/ui/app/app.dart';
 import 'package:responsive_scaffold/responsive_scaffold.dart';
+import 'package:responsive_scaffold/utils/breakpoint.dart';
 
+import '../data/classes/email.dart';
+import '../data/dummy_data.dart';
 import 'common/common.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,9 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  final Size _tabletBreakpoint = Size(510.0, 510.0);
+
   @override
   Widget build(BuildContext context) {
+    final bool _tablet = isTablet(context, breakpoint: _tabletBreakpoint);
     return ResponsiveScaffold.builder(
+      tabletBreakpoint: _tabletBreakpoint,
       detailBuilder: (BuildContext context, int index) {
         final i = _emails[index];
         return DetailsScreen(
@@ -60,12 +66,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       },
-      drawer: Drawer(
-        child: Container(),
-      ),
+      drawer: AppDrawer(),
+      tabletSideMenu: _tablet
+          ? Flexible(
+              flex: 1,
+              child: AppSideMenu(),
+            )
+          : null,
+      tabletFlexListView: 4,
       slivers: <Widget>[
         SliverFloatingBar(
           floating: true,
+          automaticallyImplyLeading: !_tablet,
           title: TextField(
             decoration: InputDecoration.collapsed(hintText: "Search mail"),
           ),
