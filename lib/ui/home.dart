@@ -21,12 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  final Size _tabletBreakpoint = Size(480.0, 480.0);
+  final Size _tabletBreakpoint = Size(510.0, 510.0);
 
   @override
   Widget build(BuildContext context) {
     final bool _tablet = isTablet(context, breakpoint: _tabletBreakpoint);
     return ResponsiveScaffold.builder(
+      tabletBreakpoint: _tabletBreakpoint,
       detailBuilder: (BuildContext context, int index) {
         final i = _emails[index];
         return DetailsScreen(
