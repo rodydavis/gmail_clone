@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_scaffold/responsive_scaffold.dart';
+import 'package:intl/intl.dart';
 import 'package:floating_search_bar/floating_search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -57,8 +58,44 @@ class HomeScreen extends StatelessWidget {
       ],
       itemCount: 100,
       itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          leading: Text(index.toString()),
+        return Container(
+          padding: EdgeInsets.all(12.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: CircleAvatar(
+                  radius: 25.0,
+                  child: Text("$index"),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Title: $index"),
+                      Text("Details"),
+                    ],
+                  ),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text(DateFormat.jm().format(DateTime.now())),
+                  IconButton(
+                    icon: Icon(Icons.star_border),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
       floatingActionButton: FloatingActionButton(

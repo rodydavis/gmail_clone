@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   responsive_scaffold: ^0.0.1
   floating_search_bar: ^0.1.2
+  intl: ^0.15.7
 
 dev_dependencies:
   flutter_test:
