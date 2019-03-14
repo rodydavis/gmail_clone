@@ -55,7 +55,7 @@ class EmailListTile extends StatelessWidget {
               Text(DateFormat.jm().format(DateTime.now())),
               IconButton(
                 icon: (item?.favorite ?? false)
-                    ? Icon(Icons.star_border, color: Colors.yellow)
+                    ? Icon(Icons.star, color: Colors.yellow)
                     : Icon(Icons.star_border),
                 onPressed: () {},
               ),
