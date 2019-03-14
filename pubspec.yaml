@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  responsive_scaffold: ^0.0.1
+  responsive_scaffold: ^0.0.2
   floating_search_bar: ^0.1.2
   intl: ^0.15.7
   flutter_markdown: ^0.2.0
