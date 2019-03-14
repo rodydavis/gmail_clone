@@ -2,7 +2,7 @@ import 'package:floating_search_bar/floating_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_scaffold/responsive_scaffold.dart';
 
-import 'common/email_tile.dart';
+import 'common/common.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
       ),
       slivers: <Widget>[
         SliverFloatingBar(
+          floating: true,
           title: TextField(
             decoration: InputDecoration.collapsed(hintText: "Search mail"),
           ),
@@ -63,28 +64,7 @@ class HomeScreen extends StatelessWidget {
           index: index,
         );
       },
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? null
-            : Colors.white,
-        child: ShaderMask(
-          shaderCallback: (Rect bounds) {
-            return RadialGradient(
-              center: Alignment.center,
-              radius: 1.0,
-              colors: <Color>[
-                Colors.yellowAccent,
-                Colors.blueAccent,
-                Colors.redAccent,
-                Colors.greenAccent,
-              ],
-              tileMode: TileMode.mirror,
-            ).createShader(bounds);
-          },
-          child: Icon(Icons.add, size: 40.0),
-        ),
-        onPressed: () {},
-      ),
+      floatingActionButton: EmailFAB(),
     );
   }
 }
