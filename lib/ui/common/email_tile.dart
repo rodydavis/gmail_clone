@@ -5,10 +5,12 @@ import 'package:intl/intl.dart';
 class EmailListTile extends StatelessWidget {
   const EmailListTile({
     Key key,
+    this.favoriteChanged,
     @required this.item,
   }) : super(key: key);
 
   final EmailItem item;
+  final VoidCallback favoriteChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +57,9 @@ class EmailListTile extends StatelessWidget {
               Text(DateFormat.jm().format(DateTime.now())),
               IconButton(
                 icon: (item?.favorite ?? false)
-                    ? Icon(Icons.star, color: Colors.yellow)
+                    ? Icon(Icons.star, color: Colors.amber)
                     : Icon(Icons.star_border),
-                onPressed: () {},
+                onPressed: favoriteChanged,
               ),
             ],
           ),

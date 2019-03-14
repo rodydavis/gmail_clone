@@ -77,6 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
         final i = _emails[index];
         return EmailListTile(
           item: i,
+          favoriteChanged: () {
+            setState(() {
+              i.favorite = !i.favorite;
+            });
+          },
         );
       },
       floatingActionButton: EmailFAB(),
