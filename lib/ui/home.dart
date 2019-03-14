@@ -75,6 +75,21 @@ class _HomeScreenState extends State<HomeScreen> {
       itemCount: _emails?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         final i = _emails[index];
+        final bool _lastItem = (index + 1) == emails?.length ?? 0;
+        print("$index => ${emails?.length}");
+        if (_lastItem) {
+          return Container(
+            padding: EdgeInsets.only(bottom: 70.0),
+            child: EmailListTile(
+              item: i,
+              favoriteChanged: () {
+                setState(() {
+                  i.favorite = !i.favorite;
+                });
+              },
+            ),
+          );
+        }
         return EmailListTile(
           item: i,
           favoriteChanged: () {
