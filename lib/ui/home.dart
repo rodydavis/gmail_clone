@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return ResponsiveScaffold.builder(
       detailBuilder: (BuildContext context, int index) {
+        final i = _emails[index];
         return DetailsScreen(
           appBar: AppBar(
             elevation: 0.0,
@@ -33,7 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               IconButton(
                 icon: Icon(Icons.delete_outline),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    _emails.removeAt(index);
+                  });
+                },
               ),
               IconButton(
                 icon: Icon(Icons.mail_outline),
@@ -45,10 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          body: Container(
-            child: Center(
-              child: Text("Item: $index"),
-            ),
+          body: EmailView(
+            item: i,
+            favoriteChanged: () {
+              setState(() {
+                i.favorite = !i.favorite;
+              });
+            },
           ),
         );
       },
@@ -76,7 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
       itemBuilder: (BuildContext context, int index) {
         final i = _emails[index];
         final bool _lastItem = (index + 1) == emails?.length ?? 0;
-        print("$index => ${emails?.length}");
         if (_lastItem) {
           return Container(
             padding: EdgeInsets.only(bottom: 70.0),
