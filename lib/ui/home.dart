@@ -1,10 +1,24 @@
 import 'package:floating_search_bar/floating_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:gmail_clone/data/classes/email.dart';
+import 'package:gmail_clone/data/dummy_data.dart';
 import 'package:responsive_scaffold/responsive_scaffold.dart';
 
 import 'common/common.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<EmailItem> _emails;
+  @override
+  void initState() {
+    _emails = emails;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveScaffold.builder(
@@ -58,10 +72,11 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ],
-      itemCount: 100,
+      itemCount: _emails?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
+        final i = _emails[index];
         return EmailListTile(
-          index: index,
+          item: i,
         );
       },
       floatingActionButton: EmailFAB(),

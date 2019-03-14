@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gmail_clone/data/classes/email.dart';
 import 'package:intl/intl.dart';
 
 class EmailListTile extends StatelessWidget {
   const EmailListTile({
     Key key,
-    @required this.index,
+    @required this.item,
   }) : super(key: key);
 
-  final int index;
+  final EmailItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class EmailListTile extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: CircleAvatar(
               radius: 25.0,
-              child: Text("$index"),
+              child: Text(item?.avatar ?? ""),
             ),
           ),
           Expanded(
@@ -30,8 +31,19 @@ class EmailListTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Title: $index"),
-                  Text("Details"),
+                  Text(
+                    item?.title ?? "",
+                    style: Theme.of(context).textTheme.display1.copyWith(
+                          fontSize: 16.0,
+                        ),
+                  ),
+                  Text(
+                    item?.description ?? "",
+                    style: Theme.of(context).textTheme.body1.copyWith(
+                          fontSize: 16.0,
+                          color: Colors.grey,
+                        ),
+                  ),
                 ],
               ),
             ),
@@ -42,7 +54,9 @@ class EmailListTile extends StatelessWidget {
             children: <Widget>[
               Text(DateFormat.jm().format(DateTime.now())),
               IconButton(
-                icon: Icon(Icons.star_border),
+                icon: (item?.favorite ?? false)
+                    ? Icon(Icons.star_border, color: Colors.yellow)
+                    : Icon(Icons.star_border),
                 onPressed: () {},
               ),
             ],
