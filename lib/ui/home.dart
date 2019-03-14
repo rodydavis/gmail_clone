@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_scaffold/responsive_scaffold.dart';
+import 'package:floating_search_bar/floating_search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -35,12 +36,23 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
+      drawer: Drawer(
+        child: Container(),
+      ),
       slivers: <Widget>[
-        SliverAppBar(
-          title: Text("App Bar"),
+        SliverFloatingBar(
+          title: TextField(
+            decoration: InputDecoration.collapsed(hintText: "Search mail"),
+          ),
+          trailing: CircleAvatar(
+            child: Text("RD"),
+          ),
         ),
         SliverToBoxAdapter(
-          child: Text("All Inboxes"),
+          child: Container(
+            padding: EdgeInsets.all(12.0),
+            child: Text("All Inboxes"),
+          ),
         ),
       ],
       itemCount: 100,
